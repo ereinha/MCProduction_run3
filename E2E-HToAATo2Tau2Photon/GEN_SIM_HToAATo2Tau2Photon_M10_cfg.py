@@ -104,23 +104,30 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '130X_mcRun3_2023_realistic_postBPix_v5', '')
 
 process.genHToAATo2Tau2PhotonFilter = cms.EDFilter("GenHToAATo2Tau2PhotonFilter",
-   src       = cms.InputTag("genParticles"), #GenParticles collection as input
-   nHiggs    = cms.double(1),    #Number of H->AA->2Tau2Photon candidates
-   tauPtCut  = cms.double(20.0), #at least a GenTau with this minimum pT
-   tauEtaCut = cms.double(2.4),    #GenTau eta max value
-   gammadRCut  = cms.double(.2),   #GenTauTau dR max value for merged taus : Note this is ignored for this generation in actual filter
-   gammaEtaCut = cms.double(2.4),    #GenTau eta max value
-   gammaPtCut  = cms.double(20.0), #at least a GenTau with this minimum pT
+   src        = cms.InputTag("genParticles"), #GenParticles collection as input
+   tauPtCut   = cms.double(5.0),     # GenTau minimum pT
+   tauEtaCut  = cms.double(2.4),     # GenTau eta max value
+   phoPtCut_  = cms.double(5.0),     # GenPho minimum pT
+   phoEtaCut_ = cms.double(2.4),     # GenPho eta max value
+   phoDrCut_  = cms.double(0.2),     # min dR between the photons
+   nHiggs_    = cms.int(1),          # number of Higgs in the event
 )
 
-process.generator = cms.EDFilter("Pythia8ConcurrentGeneratorFilter",
+process.generator = cms.EDFilter("Py8PtGunDifferentm0",
+    PGunParameters = cms.PSet(
+        MinEta = cms.double(-2.4),
+        MaxEta = cms.double(2.4),
+        MinPt = cms.double(5.0),
+        MaxPt = cms.double(150.0),
+        PtRes = cms.double(5.0),
+		MinMass = cms.double(3.6),
+        MaxMass = cms.double(8.0),
+        MassRes = cms.double(0.2),
+        AddAntiParticle = cms.bool(False),
+    ),
     PythiaParameters = cms.PSet(
-        parameterSets = cms.vstring(
-            'pythia8CommonSettings',
-            'pythia8CP5Settings',
-            'processParameters'
-        ),
-        processParameters = cms.vstring(
+        parameterSets = cms.vstring('processParameters'),   
+        processParameters = cms.vstring(        
             'Higgs:useBSM = on',
             'HiggsBSM:gg2H2 = on',
             '35:m0 = 125.',
