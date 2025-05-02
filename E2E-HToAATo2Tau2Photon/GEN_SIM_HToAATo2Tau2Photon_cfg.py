@@ -110,7 +110,7 @@ process.genHToAATo2Tau2PhotonFilter = cms.EDFilter("GenHToAATo2Tau2PhotonFilter"
    phoPtCut_  = cms.double(5.0),     # GenPho minimum pT
    phoEtaCut_ = cms.double(2.4),     # GenPho eta max value
    phoDrCut_  = cms.double(0.2),     # min dR between the photons
-   nHiggs_    = cms.int(1),          # number of Higgs in the event
+   nHiggs_    = cms.int32(1),          # number of Higgs in the event
 )
 
 process.generator = cms.EDFilter("Py8PtGunDifferentm0",
