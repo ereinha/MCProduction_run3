@@ -89,7 +89,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(20971520),
-    fileName = cms.untracked.string('file:GEN_SIM_HToAATo2Tau2Photon_M10.root'),
+    fileName = cms.untracked.string('file:GEN_SIM_HToAATo2Tau2Photon.root'),
     outputCommands = process.RAWSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
@@ -113,7 +113,7 @@ process.genHToAATo2Tau2PhotonFilter = cms.EDFilter("GenHToAATo2Tau2PhotonFilter"
    nHiggs_    = cms.int32(1),          # number of Higgs in the event
 )
 
-process.generator = cms.EDFilter("Py8PtGunDifferentm0",
+process.generator = cms.EDFilter("Pythia8PtGunDifferentm0",
     PGunParameters = cms.PSet(
         MinEta = cms.double(-2.4),
         MaxEta = cms.double(2.4),
