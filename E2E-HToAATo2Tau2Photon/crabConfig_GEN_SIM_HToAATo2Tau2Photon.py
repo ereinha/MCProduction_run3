@@ -10,7 +10,7 @@ config.General.transferLogs = True
 
 # CMS cfg file goes here:
 config.JobType.pluginName = 'PrivateMC'
-config.JobType.psetName = 'GEN_SIM_HToAATo2Tau2Photon_%s_pt5To150_cfg.py'%Mass_tag
+config.JobType.psetName = 'GEN_SIM_HToAATo2Tau2Photon_cfg.py'
 config.Data.outputPrimaryDataset = 'GEN_SIM_HToAATo2Tau2Photon_%s_pt5To150_m3p2To8'%Mass_tag
 
 #config.JobType.maxMemoryMB = 2800
